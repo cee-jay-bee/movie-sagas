@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
+import {Button} from '@material-ui/core';
 
 function MovieDetails() {
 
@@ -33,8 +34,8 @@ function MovieDetails() {
                     );
                 })}
             </section>
+            <Button>Back to List</Button>
         </main>
-
     );
 }
 
