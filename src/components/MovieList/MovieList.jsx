@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import axios from "axios";
+import {Link} from "react-router-dom"
 
 function MovieList() {
 
@@ -21,7 +22,7 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <a href="/details"><img src={movie.poster} alt={movie.title} onClick={()=>{dispatch({type: 'SET_MOVIES', payload:movie})}} /></a>
+                            <Link to="/details" /><img src={movie.poster} alt={movie.title} onClick={()=>{dispatch({type: 'SET_MOVIE', payload:movie})}} />
                         </div>
                     );
                 })}
