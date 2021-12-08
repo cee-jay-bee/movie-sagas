@@ -22,7 +22,7 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <Link to="/details" /><img src={movie.poster} alt={movie.title} onClick={()=>{dispatch({type: 'SET_MOVIE', payload:movie})}} />
+                            <Link to="/details" ><img src={movie.poster} alt={movie.title} onClick={()=>{dispatch({type: 'SET_MOVIE', payload:movie})}} /></Link>
                         </div>
                     );
                 })}
