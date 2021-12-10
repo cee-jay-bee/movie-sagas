@@ -5,6 +5,7 @@ import MovieDetails from '../MovieDetails/MovieDetails'
 import Header from "../Header/Header";
 import AddMovie from "../AddMovie/AddMovie";
 
+
 function App() {
   return (
     <div className="App">
