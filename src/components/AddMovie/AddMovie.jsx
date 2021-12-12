@@ -18,16 +18,15 @@ function AddMovie() {
     const classes = useStyles();
     
     const[ newMovie, setNewMovie ] = useState( { } );
+    const[ genre, setGenre] = useState( '' );
 
     const handleChange = ( event ) =>{
         setNewMovie( {...newMovie, [event.target.id] : event.target.value } );
-        console.log(newMovie);
     }
 
     const handleGenreChange = ( event ) =>{
         setNewMovie( {...newMovie, genre_id : event.target.value } );
-        console.log(event.target);
-        console.log(newMovie);
+        setGenre(event.target.value);
     }
 
     return (
@@ -78,7 +77,7 @@ function AddMovie() {
                         id={'genre_id'}
                         className={classes.input}
                         label="Genre"
-                        value={''}
+                        value={genre}
                         onChange={ (event ) =>handleGenreChange ( event )}>
                         <MenuItem id="genre_id" value={1}>Adventure</MenuItem>
                         <MenuItem id="genre_id" value={2}>Animated</MenuItem>
