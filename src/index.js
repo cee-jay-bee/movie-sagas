@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('GET_MOVIE', fetchOneMovie);
     yield takeEvery('GET_MOVIE', fetchGenres);
+    yield takeEvery('ADD_MOVIE', addMovie);
 }
 
 function* fetchAllMovies() {
@@ -53,6 +54,19 @@ function* fetchGenres( action ) {
 
     } catch ( err ) {
         console.log('get one error', err);
+    }      
+}
+
+function* addMovie(action) {
+    // get all movies from the DB
+    console.log(action);
+    try {
+        const movies = yield axios.post('/api/movie', action.payload);
+        console.log('get all:', movies.data);
+        yield put({ type: 'FETCH_MOVIES'});
+
+    } catch {
+        console.log('get all error');
     }      
 }
 

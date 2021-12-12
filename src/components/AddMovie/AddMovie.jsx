@@ -2,22 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { TextField, Grid, Button, Box, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 
 const useStyles = makeStyles({
     input: {
-      marginLeft: "25px",
+      marginLeft: "75%",
       minWidth: 120,
     }
   }); 
 
 function AddMovie() {
+
+    const dispatch = useDispatch();
     const classes = useStyles();
     
     const[ newMovie, setNewMovie ] = useState( { } );
 
     const handleChange = ( event ) =>{
         setNewMovie( {...newMovie, [event.target.id] : event.target.value } );
+        console.log(newMovie);
+    }
+
+    const handleGenreChange = ( event ) =>{
+        setNewMovie( {...newMovie, genre_id : event.target.value } );
+        console.log(event.target);
         console.log(newMovie);
     }
 
@@ -29,7 +38,7 @@ function AddMovie() {
         <Grid container>
             <Grid item xs={3}>
                 <TextField
-                    id={'movieTitle'}
+                    id={'title'}
                     variant={'outlined'}
                     label={'Title'}
                     margin={'normal'}
@@ -40,7 +49,7 @@ function AddMovie() {
                 />
                 <Box />
                 <TextField
-                    id={'moviePoster'}
+                    id={'poster'}
                     variant={'outlined'}
                     label={'Poster URL'}
                     margin={'normal'}
@@ -63,31 +72,34 @@ function AddMovie() {
                     onChange={ (event ) =>handleChange ( event )}
                 />
                 <Box />
-                <FormControl style={{minWidth: 120}}>
+                <FormControl style={{marginLeft: "75%", minWidth: 120}}>
                     <InputLabel>Genre</InputLabel>
                     <Select
+                        id={'genre_id'}
                         className={classes.input}
-                        value={"Adventure"}
-                        label="Age"
-                        onChange={ (event ) =>handleChange ( event )}>
-                        <MenuItem id="movieGenre" value={"Adventure"}>Adventure</MenuItem>
-                        <MenuItem id="movieGenre" value={"Animated"}>Animated</MenuItem>
-                        <MenuItem id="movieGenre" value={"Biographical"}>Biographical</MenuItem>
-                        <MenuItem id="movieGenre" value={"Comedy"}>Comedy</MenuItem>
-                        <MenuItem id="movieGenre" value={"Disaster"}>Disaster</MenuItem>
-                        <MenuItem id="movieGenre" value={"Drama"}>Drama</MenuItem>
-                        <MenuItem id="movieGenre" value={"Epic"}>Epic</MenuItem>
-                        <MenuItem id="movieGenre" value={"Fantasy"}>Fantasy</MenuItem>
-                        <MenuItem id="movieGenre" value={"Musical"}>Musical</MenuItem>
-                        <MenuItem id="movieGenre" value={"Romantic"}>Romantic</MenuItem>
-                        <MenuItem id="movieGenre" value={"Science Fiction"}>Science Fiction</MenuItem>
-                        <MenuItem id="movieGenre" value={"Space-Opera"}>Space-Opera</MenuItem>
-                        <MenuItem id="movieGenre" value={"Superhero"}>Superhero</MenuItem>
+                        label="Genre"
+                        value={''}
+                        onChange={ (event ) =>handleGenreChange ( event )}>
+                        <MenuItem id="genre_id" value={1}>Adventure</MenuItem>
+                        <MenuItem id="genre_id" value={2}>Animated</MenuItem>
+                        <MenuItem id="genre_id" value={3}>Biographical</MenuItem>
+                        <MenuItem id="genre_id" value={4}>Comedy</MenuItem>
+                        <MenuItem id="genre_id" value={5}>Disaster</MenuItem>
+                        <MenuItem id="genre_id" value={6}>Drama</MenuItem>
+                        <MenuItem id="genre_id" value={7}>Epic</MenuItem>
+                        <MenuItem id="genre_id" value={8}>Fantasy</MenuItem>
+                        <MenuItem id="genre_id" value={9}>Musical</MenuItem>
+                        <MenuItem id="genre_id" value={10}>Romantic</MenuItem>
+                        <MenuItem id="genre_id" value={11}>Science Fiction</MenuItem>
+                        <MenuItem id="genre_id" value={12}>Space-Opera</MenuItem>
+                        <MenuItem id="genre_id" value={13}>Superhero</MenuItem>
                     </Select>
                 </FormControl>                 
             </Grid>
             
       </Grid>
+      <Button><Link to="/">CANCEL</Link></Button>
+      <Button onClick={()=>{dispatch({type: 'ADD_MOVIE', payload:newMovie})}}><Link to="/">SAVE</Link></Button>
     </div>
 
     );

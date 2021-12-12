@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import axios from "axios";
 import {Link} from "react-router-dom"
+import Header from "../Header/Header";
 
 
 function MovieList() {
@@ -17,6 +18,7 @@ function MovieList() {
 
     return (
         <main>
+            <Header />
             <h1>MovieList</h1>
             <section className="movies">
                 {movies.map(movie => {
